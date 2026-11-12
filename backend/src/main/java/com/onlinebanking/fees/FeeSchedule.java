@@ -43,7 +43,7 @@ public class FeeSchedule {
                 new FeeItem("Apertura de cuenta", ACCOUNT_OPENING, "Siempre gratis"),
                 new FeeItem("Cuota de manejo mensual", MONTHLY_MAINTENANCE, "No existe"),
                 new FeeItem("Transferencia entre tus propias cuentas", OWN_TRANSFER, "Gratis"),
-                new FeeItem("Transferencia a otra persona en Banco Ceiba Demo", THIRD_PARTY_TRANSFER, "Se muestra antes de confirmar"),
+                new FeeItem("Transferencia a otra persona en Banco Gocomezbo", THIRD_PARTY_TRANSFER, "Se muestra antes de confirmar"),
                 new FeeItem("Cierre de cuenta o retracto", Money.ZERO, "Sin penalidad"),
                 new FeeItem("Descarga de tus datos", Money.ZERO, "Gratis, cuando quieras")
         );

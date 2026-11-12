@@ -43,9 +43,9 @@ public class TransferService {
     @Transactional
     public QuoteResponse quote(Customer customer, QuoteRequest req) {
         Account from = accounts.findByIdAndOwnerId(req.fromAccountId(), customer.getId())
-                .orElseThrow(() -> new NotFoundException("Cuenta de origen"));
+                .orElseThrow(() -> new NotFoundException("No encontramos la cuenta de origen"));
         Account to = accounts.findByNumber(req.toAccountNumber())
-                .orElseThrow(() -> new NotFoundException("Cuenta destino"));
+                .orElseThrow(() -> new NotFoundException("No existe ninguna cuenta con ese número"));
 
         if (!from.isOpen()) {
             throw BusinessException.conflict("ACCOUNT_NOT_OPEN", "La cuenta de origen está cerrada");
@@ -77,7 +77,7 @@ public class TransferService {
     public TransferResult confirm(Long customerId, String quoteId) {
         TransferQuote q = quotes.findByIdForUpdate(quoteId)
                 .filter(x -> x.getCustomer().getId().equals(customerId))
-                .orElseThrow(() -> new NotFoundException("Cotización"));
+                .orElseThrow(() -> new NotFoundException("No encontramos esa cotización"));
 
         if (q.getStatus() == QuoteStatus.CONFIRMED) {
             return result(q, q.getFromAccount().getBalance());
@@ -138,7 +138,7 @@ public class TransferService {
     public QuoteResponse cancel(Long customerId, String quoteId) {
         TransferQuote q = quotes.findByIdForUpdate(quoteId)
                 .filter(x -> x.getCustomer().getId().equals(customerId))
-                .orElseThrow(() -> new NotFoundException("Cotización"));
+                .orElseThrow(() -> new NotFoundException("No encontramos esa cotización"));
         if (q.getStatus() == QuoteStatus.PENDING) {
             q.markCancelled();
         }
@@ -146,7 +146,7 @@ public class TransferService {
     }
 
     private Account lock(Long id) {
-        return accounts.findByIdForUpdate(id).orElseThrow(() -> new NotFoundException("Cuenta"));
+        return accounts.findByIdForUpdate(id).orElseThrow(() -> new NotFoundException("No encontramos esa cuenta"));
     }
 
     private TransferResult result(TransferQuote q, BigDecimal newBalance) {

@@ -30,7 +30,7 @@ public class TokenService {
         Instant now = Instant.now();
         Instant expiresAt = now.plus(props.jwtTtlMinutes(), ChronoUnit.MINUTES);
         JwtClaimsSet claims = JwtClaimsSet.builder()
-                .issuer("banco-ceiba-demo")
+                .issuer("banco-gocomezbo")
                 .issuedAt(now)
                 .expiresAt(expiresAt)
                 .subject(String.valueOf(customer.getId()))

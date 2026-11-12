@@ -14,7 +14,7 @@ app:
   jwt-secret: secreto-de-pruebas-0123456789abcdef-0123456789
   jwt-ttl-minutes: 30
   quote-ttl-seconds: 120
-  admin-email: admin@ceiba.demo
+  admin-email: admin@gocomezbo.demo
   admin-password: Admin123!
   frontend-url: http://localhost:5173
   dev-outbox: true

@@ -25,7 +25,7 @@ public class LegalDocuments {
 
     public LegalDocuments(FeeSchedule fees) {
         docs.put("terminos", new LegalDoc("terminos", "Términos de uso", TERMS_VERSION, List.of(
-                new Section("Quiénes somos", "Banco Ceiba Demo es un proyecto académico de práctica. No es una entidad financiera, "
+                new Section("Quiénes somos", "Banco Gocomezbo es un proyecto académico de práctica. No es una entidad financiera, "
                         + "no está vigilado por la Superintendencia Financiera de Colombia y no maneja dinero real. Los datos de empresa están en /empresa."),
                 new Section("Tu cuenta", "Para usar la banca en línea necesitas registrarte con tu nombre, correo, contraseña y fecha de nacimiento. "
                         + "Si eres menor de 18 años, tu padre, madre o tutor debe autorizar la cuenta antes de que puedas operar. La edad mínima es 14 años."),
@@ -40,7 +40,7 @@ public class LegalDocuments {
         )));
 
         docs.put("privacidad", new LegalDoc("privacidad", "Política de privacidad", PRIVACY_VERSION, List.of(
-                new Section("Responsable", "Banco Ceiba Demo (proyecto académico). Contacto: privacidad@ceiba.demo. "
+                new Section("Responsable", "Banco Gocomezbo (proyecto académico). Contacto: privacidad@gocomezbo.demo. "
                         + "Esta política sigue los principios de la Ley 1581 de 2012 de protección de datos personales en Colombia."),
                 new Section("Qué datos recogemos y por qué", "Nombre (identificarte), correo (iniciar sesión y avisos), contraseña cifrada con BCrypt (seguridad), "
                         + "fecha de nacimiento (verificar mayoría de edad) y, solo si eres menor, el correo de tu tutor. Nada más: no pedimos teléfono, dirección, documento ni género."),
@@ -81,7 +81,7 @@ public class LegalDocuments {
     public LegalDoc get(String slug) {
         LegalDoc doc = docs.get(slug);
         if (doc == null) {
-            throw new NotFoundException("Documento");
+            throw new NotFoundException("No encontramos ese documento");
         }
         return doc;
     }

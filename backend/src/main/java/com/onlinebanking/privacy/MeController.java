@@ -78,7 +78,7 @@ public class MeController {
     @GetMapping("/export")
     public ResponseEntity<Map<String, Object>> export(@AuthenticationPrincipal Jwt jwt) {
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"mis-datos-banco-ceiba.json\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"mis-datos-banco-gocomezbo.json\"")
                 .body(privacy.export(current.require(jwt)));
     }
 

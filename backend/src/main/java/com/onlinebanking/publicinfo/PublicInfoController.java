@@ -52,10 +52,10 @@ public class PublicInfoController {
     @GetMapping("/company")
     public CompanyInfo company() {
         return new CompanyInfo(
-                "Banco Ceiba Demo S.A.S. (empresa ficticia)",
+                "Banco Gocomezbo S.A.S. (empresa ficticia)",
                 "NIT 000.000.000-0 (ficticio)",
                 "Cali, Valle del Cauca, Colombia",
-                "contacto@ceiba.demo",
+                "contacto@gocomezbo.demo",
                 "Lunes a viernes, 8:00 a. m. a 6:00 p. m. (hora de Colombia)",
                 "Ninguno: no es una entidad vigilada por la Superintendencia Financiera",
                 "Proyecto académico de práctica en Java. No capta dinero real ni presta servicios financieros.");

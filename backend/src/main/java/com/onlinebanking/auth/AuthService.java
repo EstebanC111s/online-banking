@@ -78,13 +78,13 @@ public class AuthService {
 
         if (minor) {
             mailer.sendTransactional(c.getGuardianEmail(), "Autoriza la cuenta de " + c.getFullName(),
-                    c.getFullName() + " quiere abrir una cuenta en Banco Ceiba Demo y te indicó como su padre, madre o tutor.\n"
+                    c.getFullName() + " quiere abrir una cuenta en Banco Gocomezbo y te indicó como su padre, madre o tutor.\n"
                             + "Si estás de acuerdo, autorízala aquí: " + mailer.guardianLink(guardianToken) + "\n"
                             + "Si no reconoces esta solicitud, ignora este correo: la cuenta no podrá usarse.");
             return new RegisterResponse(c.getId(), c.getStatus().name(),
                     "Cuenta creada. Le enviamos un correo a tu tutor; podrás iniciar sesión cuando la autorice.");
         }
-        mailer.sendTransactional(email, "Bienvenido a Banco Ceiba Demo", "Hola " + c.getFullName() + ", tu registro quedó listo.");
+        mailer.sendTransactional(email, "Bienvenido a Banco Gocomezbo", "Hola " + c.getFullName() + ", tu registro quedó listo.");
         return new RegisterResponse(c.getId(), c.getStatus().name(), "Cuenta creada. Ya puedes iniciar sesión.");
     }
 

@@ -37,7 +37,7 @@ public class DisputeService {
     @Transactional
     public DisputeView open(Customer customer, Long transactionId, String reason) {
         BankTransaction tx = transactions.findByIdAndAccountOwnerId(transactionId, customer.getId())
-                .orElseThrow(() -> new NotFoundException("Movimiento"));
+                .orElseThrow(() -> new NotFoundException("No encontramos ese movimiento"));
         if (!tx.getType().isDisputable()) {
             throw BusinessException.badRequest("NOT_DISPUTABLE", "Solo se pueden disputar transferencias enviadas y comisiones");
         }
@@ -71,7 +71,7 @@ public class DisputeService {
 
     @Transactional
     public DisputeView resolve(Long disputeId, boolean doRefund, String note) {
-        Dispute d = disputes.findById(disputeId).orElseThrow(() -> new NotFoundException("Disputa"));
+        Dispute d = disputes.findById(disputeId).orElseThrow(() -> new NotFoundException("No encontramos esa disputa"));
         if (doRefund) {
             refund(d, (note == null || note.isBlank()) ? "Disputa aceptada" : note);
         } else {
@@ -86,7 +86,7 @@ public class DisputeService {
         BankTransaction original = d.getTransaction();
         BigDecimal amount = original.getAmount().abs();
         Account account = accounts.findByIdForUpdate(original.getAccount().getId())
-                .orElseThrow(() -> new NotFoundException("Cuenta"));
+                .orElseThrow(() -> new NotFoundException("No encontramos esa cuenta"));
         if (!account.isOpen()) {
             throw BusinessException.conflict("ACCOUNT_NOT_OPEN", "La cuenta del movimiento está cerrada; no se puede abonar la devolución");
         }

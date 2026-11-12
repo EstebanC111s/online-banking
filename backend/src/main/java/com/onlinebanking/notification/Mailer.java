@@ -31,7 +31,7 @@ public class Mailer {
             return false;
         }
         String withFooter = body
-                + "\n\n---\nRecibes este correo porque aceptaste novedades de Banco Ceiba Demo."
+                + "\n\n---\nRecibes este correo porque aceptaste novedades de Banco Gocomezbo."
                 + "\nDarte de baja (un clic, sin iniciar sesión): " + unsubscribeLink(customer);
         outbox.save(new OutboxMessage(customer.getEmail(), subject, withFooter, MessageKind.MARKETING));
         return true;

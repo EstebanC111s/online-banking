@@ -23,7 +23,7 @@ public class DevOutboxController {
     @GetMapping
     public List<OutboxMessage> latest() {
         if (!props.devOutbox()) {
-            throw new NotFoundException("Recurso");
+            throw new NotFoundException("No encontrado");
         }
         return outbox.findTop50ByOrderByIdDesc();
     }

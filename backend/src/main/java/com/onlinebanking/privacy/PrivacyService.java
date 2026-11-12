@@ -90,7 +90,7 @@ public class PrivacyService {
     public Map<String, Object> export(Customer c) {
         Map<String, Object> data = new LinkedHashMap<>();
         data.put("generatedAt", Instant.now());
-        data.put("note", "Estos son todos los datos personales que Banco Ceiba Demo guarda sobre ti.");
+        data.put("note", "Estos son todos los datos personales que Banco Gocomezbo guarda sobre ti.");
         data.put("profile", me(c));
         data.put("consents", consentService.current(c.getId()));
         data.put("consentHistory", consentService.history(c.getId()).stream()

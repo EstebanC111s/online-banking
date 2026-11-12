@@ -100,7 +100,7 @@ class ComplianceFeaturesTest {
         body.put("marketingOptIn", true);
         api.call(post("/api/auth/register"), null, body, 201);
 
-        String admin = api.login("admin@ceiba.demo", "Admin123!");
+        String admin = api.login("admin@gocomezbo.demo", "Admin123!");
         JsonNode result = api.call(post("/api/admin/newsletter"), admin, Map.of("subject", "Novedades", "body", "Hola"), 200);
         assertThat(result.get("recipients").asInt()).isGreaterThanOrEqualTo(1);
 
@@ -166,7 +166,7 @@ class ComplianceFeaturesTest {
         assertThat(transferDispute.get("status").asText()).isEqualTo("OPEN");
         assertThat(transferDispute.has("dueDate")).isTrue();
 
-        String admin = api.login("admin@ceiba.demo", "Admin123!");
+        String admin = api.login("admin@gocomezbo.demo", "Admin123!");
         long disputeId = transferDispute.get("id").asLong();
         api.call(post("/api/admin/disputes/" + disputeId + "/resolve"), admin, Map.of("refund", false), 409);
         JsonNode rejected = api.call(post("/api/admin/disputes/" + disputeId + "/resolve"), admin,

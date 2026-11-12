@@ -57,7 +57,7 @@ public class ReviewService {
 
     @Transactional
     public void deleteMine(Long authorId) {
-        Review r = reviews.findByAuthorId(authorId).orElseThrow(() -> new NotFoundException("Reseña"));
+        Review r = reviews.findByAuthorId(authorId).orElseThrow(() -> new NotFoundException("Todavía no has publicado una reseña"));
         reviews.delete(r);
     }
 

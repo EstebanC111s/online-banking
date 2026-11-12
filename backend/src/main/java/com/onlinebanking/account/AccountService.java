@@ -58,7 +58,7 @@ public class AccountService {
 
     @Transactional(readOnly = true)
     public List<TransactionView> transactions(Long customerId, Long accountId, int limit) {
-        Account account = accounts.findByIdAndOwnerId(accountId, customerId).orElseThrow(() -> new NotFoundException("Cuenta"));
+        Account account = accounts.findByIdAndOwnerId(accountId, customerId).orElseThrow(() -> new NotFoundException("No encontramos esa cuenta"));
         int size = Math.min(Math.max(limit, 1), 200);
         return transactions.findByAccountIdOrderByCreatedAtDescIdDesc(account.getId(), PageRequest.of(0, size))
                 .stream().map(TransactionView::of).toList();
@@ -100,7 +100,7 @@ public class AccountService {
     private Account lockOwned(Long customerId, Long accountId) {
         return accounts.findByIdForUpdate(accountId)
                 .filter(a -> a.isOwnedBy(customerId))
-                .orElseThrow(() -> new NotFoundException("Cuenta"));
+                .orElseThrow(() -> new NotFoundException("No encontramos esa cuenta"));
     }
 
     private void requireZeroBalance(Account account) {
